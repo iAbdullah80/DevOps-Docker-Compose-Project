@@ -9,6 +9,8 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    networks:
+      - myAppNet
   
   app:
     depends_on:
@@ -16,6 +18,11 @@ services:
     build: ./app
     ports:
       - "5000:5000"
+    networks:
+      - myAppNet
+
+networks:
+  myAppNet:
 
 volumes:
   db_data:
